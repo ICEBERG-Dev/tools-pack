@@ -39,7 +39,7 @@ jobs:
           git config --global user.email "yury.lvn@mail.ru"
           git config --global user.name "pieceowater"
           npm version patch
-          $LAST_V = echo ::set-output name=version::$(npm --silent run version)
+          $LAST_V = $(echo ::set-output name=version::$(npm --silent run version))
           sed -i 's/"version": ".*"/"version": $LAST_V/' package.json
           git config --global user.email "github-actions@github.com"
           git config --global user.name "GitHub Actions"
