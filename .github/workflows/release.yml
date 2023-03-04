@@ -1,0 +1,43 @@
+name: Create new release with version tag
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '14'
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Bump package version
+        run: |
+          git config --global user.email "you@example.com"
+          git config --global user.name "Your Name"
+          npm version patch
+
+      - name: Create release with version tag
+        id: create_release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: ${{ steps.get_version.outputs.version }}
+          release_name: Release v${{ steps.get_version.outputs.version }}
+          body: |
+            New release ${{ steps.get_version.outputs.version }} has been created.
+          draft: false
+          prerelease: false
+
+      - name: Get package version
+        id: get_version
+        run: echo ::set-output name=version::$(npm --silent run version)
