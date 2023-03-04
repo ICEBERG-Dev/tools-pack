@@ -1,10 +1,10 @@
 {
-  "name": "@iceberg-dev/crypt-pack",
+  "name": "ice-crypt",
   "version": "1.0.5",
   "description": "A utility package for cryptographic operations",
   "main": "index.js",
   "publishConfig": {
-    "registry": "https://npm.pkg.github.com/"
+    "registry": "https://registry.npmjs.org/"
   },
   "repository": {
     "type": "git",
