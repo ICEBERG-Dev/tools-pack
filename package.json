@@ -1,13 +1,9 @@
 {
-  "name": "ice/samplePKG",
+  "name": "ice-sample-pkg",
   "version": "1.0.0",
   "description": "",
   "main": "utility.js",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/ICEBERG-Dev/crypt-pack.git"
-  },
   "publishConfig": {
     "registry":"https://npm.pkg.github.com/"
- }
+  }
 }
