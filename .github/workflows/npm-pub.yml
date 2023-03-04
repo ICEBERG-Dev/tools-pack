@@ -18,8 +18,10 @@ jobs:
       - name: Authenticate with npm registry
         run: |
           npm install -g npm-auth-to-token
-          npm-auth-to-token -u pieceowater -p $(echo ${NPM_TOKEN}) -e yury.lvn@mail.ru -r https://registry.npmjs.org/
+          npm-auth-to-token -u pieceowater -p ${NPM_TOKEN} -e yury.lvn@mail.ru -r https://registry.npmjs.org/
           npm config set //registry.npmjs.org/:_authToken=${NPM_TOKEN}
+        env:
+          NPM_TOKEN: ${{secrets.NPM_TOKEN}}
 
       - name: Publish package to npm registry
         run: npm publish --access private
