@@ -1,5 +1,5 @@
 {
-  "name": "ice-crypt",
+  "name": "iceberg-crypt",
   "version": "1.0.5",
   "description": "A utility package for cryptographic operations",
   "main": "index.js",
