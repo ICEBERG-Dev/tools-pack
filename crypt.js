@@ -9,7 +9,7 @@ const base64_decode = (base64str) => {
 }
 
 function sayHello() {
-  return "hello!";
+  return "hey!";
 }
 
 const mc_decrypt = (val) => {
