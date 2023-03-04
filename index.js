@@ -30,5 +30,3 @@ export const mc_encrypt = (val) => {
 export const testencrypt = (req) => {
     return req.query.enc === "true" ? mc_encrypt(req.query.data) : mc_decrypt(req.query.data)
 }
-
-// module.exports = { sayHello };
