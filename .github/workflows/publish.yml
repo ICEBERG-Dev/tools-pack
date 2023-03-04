@@ -39,13 +39,27 @@ jobs:
           git config --global user.email "yury.lvn@mail.ru"
           git config --global user.name "pieceowater"
           npm version patch
-          sed -i 's/"version": ".*"/"version": $(echo ::set-output name=version::$(npm --silent run version))/' package.json
-          git config --global user.email "github-actions@github.com"
-          git config --global user.name "GitHub Actions"
-          git add package.json
-          git commit -a -m "Update package version"
-          git push 
+          echo ::set-output name=version::$(npm --silent run version)
 
+      - name: Update package.json
+        uses: anothrNick/update-package-json@v1
+        with:
+          version: ${{ steps.version.outputs.version }}
+
+      - name: Commit changes
+        uses: EndBug/add-and-commit@v7
+        with:
+          author_name: GitHub Actions
+          author_email: actions@github.com
+          message: Update package version to ${{ steps.version.outputs.version }}
+          add: 'package.json'
+
+      - name: Push changes
+        uses: EndBug/push-to-github-action@v2
+        with:
+          branch: ${{ github.ref }}
+          force: true
+          github_token: ${{ secrets.NPM_TOKEN }}
 
       - name: Authenticate with GitHub Packages
         uses: docker/login-action@v1
