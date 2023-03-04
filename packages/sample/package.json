@@ -1,5 +1,5 @@
 {
-  "name": "@USERNAME_GITHUB/samplePKG",
+  "name": "ice/samplePKG",
   "version": "1.0.0",
   "description": "",
   "main": "utility.js",
