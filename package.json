@@ -1,9 +1,9 @@
 {
-  "name": "@ICEBERG-Dev/crypt-pack",
-  "version": "1.0.0",
-  "description": "",
-  "main": "utility.js",
+  "name": "@iceberg-dev/crypt-pack",
+  "version": "1.0.2",
+  "description": "A utility package for cryptographic operations",
+  "main": "index.js",
   "publishConfig": {
-    "registry":"https://npm.pkg.github.com/"
+    "registry": "https://npm.pkg.github.com/"
   }
 }
