@@ -1,6 +1,6 @@
 {
   "name": "iceberg-crypt",
-  "version": "1.0.4",
+  "version": "1.0.6",
   "description": "A utility package for cryptographic operations",
   "main": "crypt.js",
   "publishConfig": {
