@@ -25,16 +25,16 @@ jobs:
           git config --global user.name "Your Name"
           npm version patch
 
-      - name: Create release with version tag
+      - name: Create Release
         id: create_release
-        uses: actions/create-release@v1
+        uses: actions/create-release@v1.0.1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          tag_name: ${{ steps.get_version.outputs.version }}
-          release_name: Release v${{ steps.get_version.outputs.version }}
+          tag_name: ${{ steps.version.outputs.version }}
+          release_name: Release v${{ steps.version.outputs.version }}
           body: |
-            New release ${{ steps.get_version.outputs.version }} has been created.
+            Release ${{ steps.version.outputs.version }}
           draft: false
           prerelease: false
 
