@@ -1,6 +1,4 @@
-# This workflow will run tests using node and then publish a package to GitHub Packages when a release is created
-
-name: Node.js Package
+name: Publish package
 
 on:
   push:
@@ -8,17 +6,22 @@ on:
       - main
 
 jobs:
-  publish-npm:
+  publish:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-node@v3
-        with:
-          node-version: 16
-      - run: npm adduser |
-             git config user.email "yury.lvn@mail.ru" |
-             git config user.name "pieceowater" |
-             npm version patch |
-             npm publish --registry=https://registry.npmjs.org/
+      - name: Checkout code
+        uses: actions/checkout@v2
+      
+      - name: Install dependencies
+        run: npm ci
+      
+      - name: Authenticate with npm registry
+        run: |
+          npm install -g npm-auth-to-token
+          npm-auth-to-token -u pieceowater -p ${NPM_TOKEN} -e yury.lvn@mail.ru -r https://registry.npmjs.org/
+          npm config set //registry.npmjs.org/:_authToken=${NPM_TOKEN}
+
+      - name: Publish package to npm registry
+        run: npm publish --access public
         env:
-          NODE_AUTH_TOKEN: ${{secrets.npm_token}}
+          NPM_TOKEN: ${{secrets.NPM_TOKEN}}
