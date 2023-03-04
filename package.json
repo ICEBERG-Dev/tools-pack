@@ -1,5 +1,5 @@
 {
-  "name": "ice-sample-pkg",
+  "name": "@ICEBERG-Dev/crypt-pack",
   "version": "1.0.0",
   "description": "",
   "main": "utility.js",
