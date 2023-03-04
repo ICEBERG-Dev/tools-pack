@@ -27,7 +27,7 @@ jobs:
             ${{ runner.os }}-node-
 
       - name: Install dependencies
-        run: npm@5 ci
+        run: npm npm@5ci
 
       - name: Get the latest tag
         id: latest_tag
