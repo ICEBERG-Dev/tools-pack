@@ -11,19 +11,17 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
-      
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v2.5.1
+        with:
+          node-version: '16'
+
       - name: Install dependencies
         run: npm install
-      
-      - name: Authenticate with npm registry
-        run: |
-          npm install -g npm-auth-to-token
-          npm-auth-to-token -u pieceowater -p ${NPM_TOKEN} -e yury.lvn@mail.ru -r https://registry.npmjs.org/
-          npm config set //registry.npmjs.org/:_authToken=${NPM_TOKEN}
-        env:
-          NPM_TOKEN: ${{secrets.NPM_TOKEN}}
 
-      - name: Publish package to npm registry
-        run: npm publish --access public
-        env:
-          NPM_TOKEN: ${{secrets.NPM_TOKEN}}
+      - name: Authenticate with GitHub Packages
+        run: echo "//npm.pkg.github.com/:_authToken=${{ secrets.NPM_TOKEN }}" >> .npmrc
+
+      - name: Publish package to GitHub Packages
+        run: npm publish --access private --registry=https://npm.pkg.github.com/
