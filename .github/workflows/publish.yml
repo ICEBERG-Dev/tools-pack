@@ -47,19 +47,13 @@ jobs:
           version: ${{ steps.version.outputs.version }}
 
       - name: Commit changes
-        uses: EndBug/add-and-commit@v7
-        with:
-          author_name: GitHub Actions
-          author_email: actions@github.com
-          message: Update package version to ${{ steps.version.outputs.version }}
-          add: 'package.json'
-
-      - name: Push changes
-        uses: EndBug/push-to-github-action@v2
+        uses: EndBug/push-to-branch@v2.1
         with:
           branch: ${{ github.ref }}
-          force: true
           github_token: ${{ secrets.NPM_TOKEN }}
+          commit_message: Update package version to ${{ steps.version.outputs.version }}
+          files: |
+            package.json
 
       - name: Authenticate with GitHub Packages
         uses: docker/login-action@v1
