@@ -1,9 +1,8 @@
 name: Publish package to GitHub Packages
 
 on:
-  push:
-#     branches:
-#       - main
+  release:
+    types: [created]
 
 jobs:
   publish:
@@ -29,10 +28,6 @@ jobs:
       - name: Install dependencies
         run: npm install
 
-      - name: Get the latest tag
-        id: latest_tag
-        run: echo ::set-output name=tag::$(git describe --tags --abbrev=0)
-
       - name: Bump package version
         id: version
         run: |
@@ -55,3 +50,10 @@ jobs:
           npm publish
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+      - name: Update package.json and push changes
+        uses: EndBug/version-check@v2
+        with:
+          tag: '${{ github.ref }}'
+          push: true
+          token: ${{ secrets.NPM_TOKEN }}
