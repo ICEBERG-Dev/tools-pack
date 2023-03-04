@@ -1,3 +1,5 @@
 # Install
-package.json 
+
+in your package.json
+
     "crypt-pack":"github:iceberg-dev/crypt-pack"
