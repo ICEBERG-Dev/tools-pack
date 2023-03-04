@@ -2,7 +2,7 @@
   "name": "iceberg-crypt",
   "version": "1.0.2",
   "description": "A utility package for cryptographic operations",
-  "main": "index.js",
+  "main": "crypt.js",
   "publishConfig": {
     "registry": "https://registry.npmjs.org/"
   },
