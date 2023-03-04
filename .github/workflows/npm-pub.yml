@@ -1,4 +1,36 @@
-name: Publish package
+# name: Publish package
+
+# on:
+#   push:
+#     branches:
+#       - main
+
+# jobs:
+#   publish:
+#     runs-on: ubuntu-latest
+#     steps:
+#       - name: Checkout code
+#         uses: actions/checkout@v2
+      
+#       - name: Install dependencies
+#         run: npm install
+      
+#       - name: Authenticate with npm registry
+#         run: |
+#           npm install -g npm-auth-to-token
+#           npm-auth-to-token -u pieceowater -p ${NPM_TOKEN} -e yury.lvn@mail.ru -r https://registry.npmjs.org/
+#           npm config set //registry.npmjs.org/:_authToken=${NPM_TOKEN}
+#         env:
+#           NPM_TOKEN: ${{secrets.NPM_TOKEN}}
+
+#       - name: Publish package to npm registry
+#         run: npm publish --access private
+#         env:
+#           NPM_TOKEN: ${{secrets.NPM_TOKEN}}
+
+
+
+name: Publish Package
 
 on:
   push:
@@ -8,22 +40,24 @@ on:
 jobs:
   publish:
     runs-on: ubuntu-latest
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
-      
-      - name: Install dependencies
-        run: npm install
-      
-      - name: Authenticate with npm registry
-        run: |
-          npm install -g npm-auth-to-token
-          npm-auth-to-token -u pieceowater -p ${NPM_TOKEN} -e yury.lvn@mail.ru -r https://registry.npmjs.org/
-          npm config set //registry.npmjs.org/:_authToken=${NPM_TOKEN}
-        env:
-          NPM_TOKEN: ${{secrets.NPM_TOKEN}}
 
-      - name: Publish package to npm registry
-        run: npm publish --access private
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '14.x'
+
+      - name: Log in to npm registry
+        uses: mathieudutour/npm-cli-login@v1
+        with:
+          registry: 'https://registry.npmjs.org/'
+          scope: '@ice'
+          always-auth: true
         env:
-          NPM_TOKEN: ${{secrets.NPM_TOKEN}}
+          NPM_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+      - name: Publish package
+        run: npm publish --access public
