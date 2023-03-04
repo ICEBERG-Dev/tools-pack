@@ -1,7 +1,7 @@
 // Import the crypto module from Node.js
 const crypto = require('crypto');
 
-const hash_key = crypto.randomUUID().substr(0,32);
+const hash_key = process.env.SECRET_KEY.substr(0,32);
 const CRYPTO_KEY = Buffer.from(hash_key, 'binary')//.toString('utf8');
 
 const base64_decode = (base64str) => {
