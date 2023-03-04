@@ -15,7 +15,8 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: 16
-      - run: git config user.email "yury.lvn@mail.ru" |
+      - run: npm adduser |
+             git config user.email "yury.lvn@mail.ru" |
              git config user.name "pieceowater" |
              npm version patch |
              npm publish --registry=https://registry.npmjs.org/
