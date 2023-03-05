@@ -24,6 +24,7 @@ jobs:
         run: git fetch --tags
           
       - name: Update version in package.json
+        id: version
         run: |
           git config --global user.email "yury.lvn@mail.ru" 
           git config --global user.name "pieceowater" 
@@ -44,8 +45,8 @@ jobs:
       - name: Create release
         uses: actions/create-release@v1
         with:
-          tag_name: ${{ env.npm_package_version }}
-          release_name: v${{ env.npm_package_version }}
+          tag_name: ${{ steps.version.outputs.npm_package_version }}
+          release_name: v${{ steps.version.outputs.npm_package_version }}
           body: |
             Changes in this release:
             - Add new feature
