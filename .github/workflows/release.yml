@@ -1,4 +1,4 @@
-name: Release Workflow
+name: Release
 
 on:
   push:
@@ -22,9 +22,13 @@ jobs:
 
       - name: Get latest tag
         run: git fetch --tags
+        
       - name: Set release version
         id: version
-        run: echo "::set-output name=version::$(npm version patch | cut -c 2-)"
+        run: |
+          git config --global user.email "yury.lvn@mail.ru"
+          git config --global user.name "pieceowater"
+          echo "::set-output name=version::$(npm version patch | cut -c 2-)"
 
       - name: Create release
         uses: actions/create-release@v1
