@@ -23,7 +23,7 @@ jobs:
       - name: Get latest tag
         run: git fetch --tags
           
-      - name: Update version in package.json
+      - name: Update version
         id: version
         run: |
           git config --global user.email "yury.lvn@mail.ru" 
@@ -32,9 +32,9 @@ jobs:
           ncc build crypt.js 
           npm version patch 
           git push --follow-tags 
-          echo $npm_package_version
-          echo "{npm_package_version}={$npm_package_version}" >> $GITHUB_OUTPUT 
+          echo "::set-output name=version::${{ env.npm_package_version }}"
           
+#          echo "{npm_package_version}={$npm_package_version}" >> $GITHUB_OUTPUT           
 #       - name: Set release version
 #         id: version
 #         run: |
