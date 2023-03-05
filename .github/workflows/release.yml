@@ -28,7 +28,7 @@ jobs:
         run: |
           git config --global user.email "yury.lvn@mail.ru"
           git config --global user.name "pieceowater"
-          echo "{version}={$(npm version patch | cut -c 2-)"}" >> $GITHUB_OUTPUT
+          echo "{version}={$(npm version patch | cut -c 2-)}" >> $GITHUB_OUTPUT
           echo "::set-output name=version::$(npm version patch | cut -c 2-)"
 
       - name: Create release
