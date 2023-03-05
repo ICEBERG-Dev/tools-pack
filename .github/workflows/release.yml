@@ -32,9 +32,9 @@ jobs:
           ncc build crypt.js 
           npm version patch 
           git push --follow-tags 
-          echo "::set-output name=version::${{ $npm_package_version }}"
+          echo "{npm_package_version}={$npm_package_version}" >> $GITHUB_OUTPUT
           
-#          echo "{npm_package_version}={$npm_package_version}" >> $GITHUB_OUTPUT           
+#                     
 #       - name: Set release version
 #         id: version
 #         run: |
