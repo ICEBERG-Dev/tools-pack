@@ -28,9 +28,16 @@ jobs:
         run: |
           git config --global user.email "yury.lvn@mail.ru" |
           git config --global user.name "pieceowater" |
-          echo $(npm version patch) 
+          echo "{version}={$(npm version patch | cut -c 2-)}" >> $GITHUB_OUTPUT 
+          
+      - name: Update version in package.json
+        run: |
+          npm i -g @vercel/ncc
+          ncc build index.js
+          npm version patch
+          git push --follow-tags
 
-#           echo "{version}={$(npm version patch | cut -c 2-)}" >> $GITHUB_OUTPUT 
+#           
 #       - name: Create release
 #         uses: actions/create-release@v1
 #         with:
