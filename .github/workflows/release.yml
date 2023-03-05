@@ -31,15 +31,12 @@ jobs:
           ncc build crypt.js 
           npm version patch 
           git push --follow-tags 
-          echo "{npm_package_version}={$npm_package_version}" >> $GITHUB_OUTPUT
           
                     
-      - name: Set release version
+      - name: test release version
         id: version
         run: |
-          git config --global user.email "yury.lvn@mail.ru" |
-          git config --global user.name "pieceowater" |
-          echo "{npm_package_version}={$(npm version patch | cut -c 2-)}" >> $GITHUB_OUTPUT 
+          echo ${{ env.npm_package_version }}
 
       - name: Create release
         uses: actions/create-release@v1
