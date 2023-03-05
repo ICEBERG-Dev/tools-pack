@@ -22,13 +22,6 @@ jobs:
 
       - name: Get latest tag
         run: git fetch --tags
-        
-      - name: Set release version
-        id: version
-        run: |
-          git config --global user.email "yury.lvn@mail.ru" |
-          git config --global user.name "pieceowater" |
-          echo "{version}={$(npm version patch | cut -c 2-)}" >> $GITHUB_OUTPUT 
           
       - name: Update version in package.json
         run: |
@@ -36,6 +29,13 @@ jobs:
           ncc build crypt.js
           npm version patch
           git push --follow-tags
+          
+      - name: Set release version
+        id: version
+        run: |
+          git config --global user.email "yury.lvn@mail.ru" |
+          git config --global user.name "pieceowater" |
+          echo "{version}={$(npm version patch | cut -c 2-)}" >> $GITHUB_OUTPUT 
 
       - name: Create release
         uses: actions/create-release@v1
