@@ -33,7 +33,7 @@ jobs:
       - name: Update version in package.json
         run: |
           npm i -g @vercel/ncc
-          ncc build index.js
+          ncc build crypt.js
           npm version patch
           git push --follow-tags
 
