@@ -1,4 +1,4 @@
-name: Create new release
+name: Release Workflow
 
 on:
   push:
@@ -28,8 +28,6 @@ jobs:
 
       - name: Create release
         uses: actions/create-release@v1
-        env:
-          TOKEN: ${{ secrets.NPM_TOKEN }}
         with:
           tag_name: ${{ steps.version.outputs.version }}
           release_name: Release ${{ steps.version.outputs.version }}
@@ -39,3 +37,5 @@ jobs:
             - Fix bug Y
           draft: false
           prerelease: false
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
