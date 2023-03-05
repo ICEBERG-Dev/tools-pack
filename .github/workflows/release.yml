@@ -25,10 +25,12 @@ jobs:
           
       - name: Update version in package.json
         run: |
-          npm i -g @vercel/ncc
-          ncc build crypt.js
-          npm version patch
-          git push --follow-tags
+          git config --global user.email "yury.lvn@mail.ru" |
+          git config --global user.name "pieceowater" |
+          npm i -g @vercel/ncc |
+          ncc build crypt.js |
+          npm version patch |
+          git push --follow-tags 
           
       - name: Set release version
         id: version
