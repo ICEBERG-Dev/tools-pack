@@ -37,18 +37,17 @@ jobs:
           npm version patch
           git push --follow-tags
 
-#           
-#       - name: Create release
-#         uses: actions/create-release@v1
-#         with:
-#           tag_name: ${{ steps.version.outputs.version }}
-#           release_name: v${{ steps.version.outputs.version }}
-#           body: |
-#             Changes in this release:
-#             - Add new feature
-#             - Fix bug
-#           draft: false
-#           prerelease: false
-#         env:
-#           GITHUB_TOKEN: ${{ secrets.NPM_TOKEN }}
-#           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+      - name: Create release
+        uses: actions/create-release@v1
+        with:
+          tag_name: ${{ steps.version.outputs.version }}
+          release_name: v${{ steps.version.outputs.version }}
+          body: |
+            Changes in this release:
+            - Add new feature
+            - Fix bug
+          draft: false
+          prerelease: false
+        env:
+          GITHUB_TOKEN: ${{ secrets.NPM_TOKEN }}
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
