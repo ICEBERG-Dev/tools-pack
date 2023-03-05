@@ -1,8 +1,9 @@
 name: Create new release
+
 on:
   push:
-#     branches:
-#       - main
+    branches:
+      - main
 
 jobs:
   release:
@@ -11,7 +12,7 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
-      - name: Set up Node.js
+      - name: Setup Node.js
         uses: actions/setup-node@v2
         with:
           node-version: '14'
@@ -19,25 +20,22 @@ jobs:
       - name: Install dependencies
         run: npm install
 
-      - name: Bump package version
-        run: |
-          git config --global user.email "you@example.com"
-          git config --global user.name "Your Name"
-          npm version patch
+      - name: Get latest tag
+        run: git fetch --tags
+      - name: Set release version
+        id: version
+        run: echo "::set-output name=version::$(npm version patch | cut -c 2-)"
 
-      - name: Create Release
-        id: create_release
-        uses: actions/create-release@v1.0.1
+      - name: Create release
+        uses: actions/create-release@v1
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
         with:
           tag_name: ${{ steps.version.outputs.version }}
-          release_name: Release v${{ steps.version.outputs.version }}
+          release_name: Release ${{ steps.version.outputs.version }}
           body: |
-            Release ${{ steps.version.outputs.version }}
+            Changes in this release:
+            - Add new feature X
+            - Fix bug Y
           draft: false
           prerelease: false
-
-      - name: Get package version
-        id: get_version
-        run: echo ::set-output name=version::$(npm --silent run version)
