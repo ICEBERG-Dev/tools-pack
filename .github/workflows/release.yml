@@ -25,11 +25,11 @@ jobs:
           
       - name: Update version
         run: |
-          git config --global user.email "yury.lvn@mail.ru" 
-          git config --global user.name "pieceowater" 
-          npm i -g @vercel/ncc 
-          ncc build crypt.js 
-          npm version patch 
+          git config --global user.email "yury.lvn@mail.ru" |
+          git config --global user.name "pieceowater" |
+          npm i -g @vercel/ncc |
+          ncc build crypt.js |
+          npm version patch |
           git push --follow-tags 
           
                     
