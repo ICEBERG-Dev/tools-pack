@@ -1,8 +1,8 @@
 name: Create new release with version tag
 on:
   push:
-    branches:
-      - main
+#     branches:
+#       - main
 
 jobs:
   release:
