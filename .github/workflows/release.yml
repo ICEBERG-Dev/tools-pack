@@ -28,9 +28,10 @@ jobs:
 
       - name: Create release
         uses: actions/create-release@v1
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+#         env:
+#           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
         with:
+          token: ${{ secrets.NPM_TOKEN }}
           tag_name: ${{ steps.version.outputs.version }}
           release_name: Release ${{ steps.version.outputs.version }}
           body: |
