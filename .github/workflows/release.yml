@@ -32,6 +32,7 @@ jobs:
           npm version patch 
           git push --follow-tags 
           echo $npm_package_version
+          echo "{npm_package_version}={$npm_package_version}" >> $GITHUB_OUTPUT 
           
 #       - name: Set release version
 #         id: version
@@ -43,8 +44,8 @@ jobs:
       - name: Create release
         uses: actions/create-release@v1
         with:
-          tag_name: ${{ $npm_package_version }}
-          release_name: v${{ $npm_package_version }}
+          tag_name: ${{ env.npm_package_version }}
+          release_name: v${{ env.npm_package_version }}
           body: |
             Changes in this release:
             - Add new feature
