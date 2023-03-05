@@ -1,6 +1,6 @@
 {
   "name": "@iceberg-dev/crypt-pack",
-  "version": "1.1.5",
+  "version": "1.1.6",
   "description": "A utility package for cryptographic operations",
   "main": "crypt.js",
   "repository": {
