@@ -28,7 +28,7 @@ jobs:
           git config --global user.email "yury.lvn@mail.ru" |
           git config --global user.name "pieceowater" |
           npm i -g @vercel/ncc |
-          ncc build crypt.js |
+          ncc build tools.js |
           npm version patch |
           git push --follow-tags 
           
