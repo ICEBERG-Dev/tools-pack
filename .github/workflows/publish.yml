@@ -28,11 +28,6 @@ jobs:
       - name: Install dependencies
         run: npm install
 
-#       - name: Bump package version
-#         id: version
-#         run: |
-#           echo "name=version::$(npm --silent run version)" >> $GITHUB_OUTPUT
-
       - name: Authenticate with GitHub Packages
         uses: docker/login-action@v1
         with:
@@ -48,9 +43,9 @@ jobs:
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
-      - name: Update package.json and push changes
-        uses: EndBug/version-check@v2
-        with:
-          tag: '${{ github.ref }}'
-          push: true
-          token: ${{ secrets.NPM_TOKEN }}
+#       - name: Update package.json and push changes
+#         uses: EndBug/version-check@v2
+#         with:
+#           tag: '${{ github.ref }}'
+#           push: true
+#           token: ${{ secrets.NPM_TOKEN }}
