@@ -1,11 +1,11 @@
-name: Release
+name: Create Release
 
 on:
-#   push:
-#     branches: [main]
+  push:
+    branches: [main]
 
 jobs:
-  increment:
+  create_release:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
@@ -16,6 +16,20 @@ jobs:
           npm version patch --no-git-tag-version
           version=$(node -p "require('./package.json').version")
           echo "::set-output name=version::$version"
+
+      - name: Debug
+        run: env
+
+      - name: Create release
+        id: create_release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.NPM_TOKEN }}
+        with:
+          tag_name: v${{ steps.increment.outputs.version }}
+          release_name: Release v${{ steps.increment.outputs.version }}
+          draft: false
+          prerelease: false
 
       - name: Update package.json
         run: |
