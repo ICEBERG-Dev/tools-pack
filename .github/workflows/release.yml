@@ -33,6 +33,7 @@ jobs:
         run: |
           version=${{ steps.ver.outputs.v }}
           sed -i "s/\"version\": \".*\"/\"version\": \"$version\"/" package.json
+          sed -i "s/\"version\": \".*\"/\"version\": \"$version\"/" package-lock.json
           git config --global user.email "yury.lvn@mail.ru"
           git config --global user.name "pieceowater"
           git add package.json
