@@ -37,6 +37,7 @@ jobs:
           git config --global user.email "yury.lvn@mail.ru"
           git config --global user.name "pieceowater"
           git add package.json
-          git commit -m "Increment version to $version" -m "[skip ci]"
+          git add package-lock.json
+          git commit -a -m "Increment version to $version" -m "[skip ci]"
           git push
 
