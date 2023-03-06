@@ -2,4 +2,4 @@
 
 in your package.json
 
-    "crypt-pack":"github:iceberg-dev/crypt-tools"
+    "tools-pack":"github:iceberg-dev/tools-pack"
