@@ -1,11 +1,11 @@
 {
-  "name": "@iceberg-dev/crypt-pack",
-  "version": "1.1.11",
+  "name": "@iceberg-dev/tools-pack",
+  "version": "1.0.1",
   "description": "A utility package for cryptographic operations",
-  "main": "crypt.js",
+  "main": "tools.js",
   "repository": {
     "type": "git",
-    "url": "https://github.com/ICEBERG-Dev/crypt-pack.git"
+    "url": "https://github.com/ICEBERG-Dev/tools-pack.git"
   },
   "scripts": {
     "build": "echo 'Building my package...'"
@@ -14,9 +14,9 @@
   "author": "iceberg group",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/ICEBERG-Dev/crypt-pack/issues"
+    "url": "https://github.com/ICEBERG-Dev/tools-pack/issues"
   },
-  "homepage": "https://github.com/ICEBERG-Dev/crypt-pack#readme",
+  "homepage": "https://github.com/ICEBERG-Dev/tools-pack#readme",
   "publishConfig": {
     "registry": "https://npm.pkg.github.com/"
   }
