@@ -31,7 +31,7 @@ jobs:
 
       - name: Update package.json
         run: |
-          version=${{ steps.increment.outputs.version }}
+          version=${{ steps.ver.outputs.v }}
           sed -i "s/\"version\": \".*\"/\"version\": \"$version\"/" package.json
           git config --global user.email "yury.lvn@mail.ru"
           git config --global user.name "pieceowater"
