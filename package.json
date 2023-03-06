@@ -1,6 +1,6 @@
 {
   "name": "@iceberg-dev/tools-pack",
-  "version": "1.0.7",
+  "version": "1.0.8",
   "description": "A utility package for cryptographic operations",
   "main": "tools.js",
   "repository": {
