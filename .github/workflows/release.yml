@@ -1,1 +1,28 @@
+name: Release
 
+on:
+  push:
+    branches: [main]
+
+jobs:
+  increment:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Increment version
+        run: |
+          npm version patch --no-git-tag-version
+          version=$(node -p "require('./package.json').version")
+          echo "::set-output name=version::$version"
+
+      - name: Update package.json
+        run: |
+          version=${{ steps.increment.outputs.version }}
+          sed -i "s/\"version\": \".*\"/\"version\": \"$version\"/" package.json
+          git config --global user.email "actions@github.com"
+          git config --global user.name "GitHub Actions"
+          git add package.json
+          git commit -m "Increment version to $version" -m "[skip ci]"
+          git push
