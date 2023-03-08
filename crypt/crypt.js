@@ -23,30 +23,4 @@ function decrypt(data) {
     return decrypted.toString();
 }
 
-/*
-
-PHP Analoge
-
-function mc_encrypt($data) {
-        $key_phrase = SECRET_KEY;
-        $key = substr(hash('sha256', $key_phrase), 0, 32);
-        $iv = openssl_random_pseudo_bytes(16);
-        $encrypted = openssl_encrypt($data, 'aes-256-cbc', $key, OPENSSL_RAW_DATA, $iv);
-        return base64_encode(base64_encode($iv) .':'. base64_encode( $encrypted));
-    }
-    
-    function mc_decrypt($data) {
-        $data = base64_decode($data);
-        $key_phrase = SECRET_KEY;
-        $key = substr(hash('sha256', $key_phrase), 0, 32);
-        $parts = explode(":", $data);
-        $iv = base64_decode($parts[0]);
-        $encrypted = base64_decode($parts[1]);
-        return openssl_decrypt($encrypted, 'aes-256-cbc', $key, OPENSSL_RAW_DATA, $iv);
-    }
-
-*/
-
-
-
 module.exports = {encrypt, decrypt}
